@@ -37,6 +37,13 @@ function sendData(request,response){
     response.send(projectData);
 };
 
-app.post('/add',addData){
-    projectData[""]
+data=[]
+app.post('/add',addData);
+function addData(res,req){
+    let data = req.body;
+    projectData["temperature"] = data.temperature;
+    projectData["data"] = data.date;
+    projectData["user response"] = data.user_response;
+    console.log(data);
 }
+
