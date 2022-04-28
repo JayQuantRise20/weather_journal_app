@@ -15,14 +15,14 @@ app.use(bodyParser.json());
 
 // Cors for cross origin allowance
 const cors = require('cors');
-const { response } = require('express');
+app.use(cors());
 
 // Initialize the main project folder
 app.use(express.static('website'));
 
 
 // Setup Server
-const port = 3000;
+const port = 8000;
 
 const server = app.listen(port,listening);
 function listening(){
@@ -37,13 +37,13 @@ function sendData(request,response){
     response.send(projectData);
 };
 
-data=[]
+
 app.post('/add',addData);
-function addData(res,req){
+function addData(req,res){
     let data = req.body;
     projectData["temperature"] = data.temperature;
-    projectData["data"] = data.date;
-    projectData["user response"] = data.user_response;
-    console.log(data);
+    projectData["date"] = data.date;
+    projectData["user_response"] = data.user_response;
+    res.send(projectData);
 }
 
