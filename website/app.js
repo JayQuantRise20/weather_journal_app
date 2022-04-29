@@ -7,19 +7,28 @@ let newDate = (d.getMonth()+1)+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // save the base url and api keys in the gloabal variables
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip="
-const apikey = ",us&appid=54450131af8941e5eaa85f164588bbfa";
-const units = "&units=metric"
+const apikey = "54450131af8941e5eaa85f164588bbfa"
+const api_id = `,us&appid=${apikey}`;
+const units = "&units=metric";
+
+
 
 // event listener to button Generate to update the UI using Get and post requests
 document.getElementById("generate").addEventListener('click',performAction);
 
 function performAction(e){
+
     // get the values inside elements zipcodes and feelings in the HTML(input from user)
     const zipcode = document.getElementById('zip').value;
     const response = document.getElementById('feelings').value;
+
+    if (zipcode==""){
+        alert("Zip Code is not provided");
+    }
+
     
     // use api credentials to extract the weather data from the external resource
-    getweather(baseURL,zipcode,apikey,units)
+    getweather(baseURL,zipcode,api_id,units)
     .then(function(data){
         // post data  
         postData('/add',{temperature:data.main.temp,date:newDate,user_response:response});
@@ -31,8 +40,8 @@ function performAction(e){
     });
 };
 
-const getweather = async (baseURL,zipcode,key,units)=>{
-    const req = await fetch(baseURL+zipcode+key+units);
+const getweather = async (baseURL,zipcode,api_id,units)=>{
+    const req = await fetch(baseURL+zipcode+api_id+units);
     try{
 
         const data = await req.json();
