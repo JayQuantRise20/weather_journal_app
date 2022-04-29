@@ -7,7 +7,8 @@ let newDate = (d.getMonth()+1)+'.'+ d.getDate()+'.'+ d.getFullYear();
 
 // save the base url and api keys in the gloabal variables
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip="
-const apikey = "54450131af8941e5eaa85f164588bbfa"
+// please enter your own api key here
+const apikey = ""
 const api_id = `,us&appid=${apikey}`;
 const units = "&units=metric";
 
